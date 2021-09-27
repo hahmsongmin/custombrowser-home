@@ -1,0 +1,10 @@
+@value homeWhite from "../../common/colors.css";
+
+.header {
+  z-index: 1;
+  color: homeWhite;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
