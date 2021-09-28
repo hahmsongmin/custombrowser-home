@@ -7,7 +7,7 @@ class SchoolLunch {
     this.month = String(this.date.getMonth() + 1).padStart(2, "0");
     this.day = String(this.date.getDate());
     this.yoil = this.date.getDay();
-    this.TODAY = `⭐${this.month}월${this.day}일`;
+    this.TODAY = `${this.month}월${this.day}일`;
     this.API_KEY = key;
     this.school = axios.create({
       baseURL: "https://open.neis.go.kr/hub",

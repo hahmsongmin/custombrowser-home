@@ -3,6 +3,8 @@ import styles from "./app.module.css";
 import Header from "./components/header/header";
 import Loader from "./components/loader/loader";
 import School from "./components/school/school";
+import Bookmark from "./components/bookmark/bookmark";
+import Todolist from "./components/todolist/todolist";
 
 function App({ weatherApi, schoolLunch }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -54,6 +56,8 @@ function App({ weatherApi, schoolLunch }) {
       ) : (
         <div className={styles.main}>
           <Header weather={weather} />
+          <Bookmark />
+          <Todolist />
           <School lunch={lunch} day={today.day} yoil={today.yoil} />
         </div>
       )}
