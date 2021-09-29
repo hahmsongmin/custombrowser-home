@@ -21,6 +21,13 @@
   position: absolute;
 }
 
+.checkboxList {
+  width: 200px;
+  height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 h6 {
   margin: 0;
   word-wrap: break-word;
@@ -59,11 +66,21 @@ h6 {
   display: block;
 }
 
-.button {
+.addButton {
   font-size: 30px;
   border-radius: 50%;
   border: none;
   position: absolute;
   bottom: -15px;
-  right: 88px;
+  right: 85px;
+}
+
+.delButton {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
 }

@@ -10,15 +10,23 @@ const Todolist = () => {
   useEffect(() => {
     checkBoxRef.current.addEventListener("click", itemClick);
     buttonIcon = document.querySelector(".fa-plus");
+
+    return () => checkBoxRef.current.removeEventListener("click", itemClick);
   }, []);
 
-  const onClick = () => {
+  const onAddClick = () => {
     inputRef.current.classList.toggle(`${styles.hidden}`);
     const ok = inputRef.current.classList.contains(`${styles.hidden}`);
     if (ok) {
       buttonIcon.style.transform = `rotate(45deg)`;
     } else {
       buttonIcon.style.transform = "none";
+    }
+  };
+
+  const onDelClick = () => {
+    while (checkBoxRef.current.firstChild) {
+      checkBoxRef.current.removeChild(checkBoxRef.current.firstChild);
     }
   };
 
@@ -40,6 +48,9 @@ const Todolist = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     const inputValue = inputRef.current.childNodes[0][0].value;
+    if (!inputValue) {
+      return;
+    }
     const listBox = document.createElement("div");
     listBox.setAttribute(
       "style",
@@ -62,8 +73,11 @@ const Todolist = () => {
         <form onSubmit={onSubmit}>
           <input type="text" placeholder="What is your main focus for today?" />
         </form>
+        <button className={styles.delButton} onClick={onDelClick}>
+          <i className="fas fa-recycle"></i>
+        </button>
       </div>
-      <button className={styles.button} onClick={onClick}>
+      <button className={styles.addButton} onClick={onAddClick}>
         <i className="fas fa-plus"></i>
       </button>
     </div>
