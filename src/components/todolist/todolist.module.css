@@ -1,18 +1,36 @@
+@value homeWhite from "../../common/colors.css";
+
 .todolist {
-  width: 500px;
+  width: 200px;
   height: 300px;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 15px;
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
   position: absolute;
+  margin: 0 auto;
   left: 50px;
-  bottom: 50px;
-  padding: 10px 0;
+  top: 180px;
+  padding: 10px 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.list {
+  padding: 0 20px;
+  border-radius: 5px;
+  position: absolute;
+}
+
+h6 {
+  margin: 0;
+  word-wrap: break-word;
 }
 
 .inputForm {
   display: none;
   transform: translateY(250px);
+  height: 20px;
+  border-radius: 5px;
 }
 
 .inputForm form {
@@ -21,9 +39,16 @@
 }
 
 .inputForm input {
-  width: 450px;
+  width: 180px;
+  height: 20px;
   border: none;
   border-radius: 5px;
+  text-align: center;
+}
+
+.inputForm input::placeholder {
+  font-size: 10px;
+  text-align: center;
 }
 
 .inputForm input:focus {
@@ -40,5 +65,5 @@
   border: none;
   position: absolute;
   bottom: -15px;
-  right: 235px;
+  right: 88px;
 }
