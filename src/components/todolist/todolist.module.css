@@ -1,5 +1,15 @@
 @value homeWhite from "../../common/colors.css";
 
+.title {
+  position: absolute;
+  top: 170px;
+  left: 100px;
+  width: 100px;
+  font-weight: bold;
+  text-align: center;
+  z-index: 1;
+}
+
 .todolist {
   width: 200px;
   height: 300px;
@@ -30,6 +40,7 @@
 
 h6 {
   margin: 0;
+  margin-right: 5px;
   word-wrap: break-word;
 }
 
@@ -62,7 +73,7 @@ h6 {
   outline: none;
 }
 
-.hidden {
+.visible {
   display: block;
 }
 
@@ -75,7 +86,17 @@ h6 {
   right: 85px;
 }
 
-.delButton {
+.allDelButton {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.selectDelButton {
   position: absolute;
   top: 30px;
   right: 0;

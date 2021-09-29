@@ -14,17 +14,35 @@ const Todolist = () => {
     return () => checkBoxRef.current.removeEventListener("click", itemClick);
   }, []);
 
+  const boxCheck = (value) => {
+    checkBoxRef.current.childNodes.forEach((child) => {
+      if (child.childNodes[1].checked) {
+        child.childNodes[1].style.pointerEvents = value;
+      }
+    });
+  };
+
   const onAddClick = () => {
-    inputRef.current.classList.toggle(`${styles.hidden}`);
-    const ok = inputRef.current.classList.contains(`${styles.hidden}`);
+    inputRef.current.classList.toggle(`${styles.visible}`);
+    const ok = inputRef.current.classList.contains(`${styles.visible}`);
     if (ok) {
       buttonIcon.style.transform = `rotate(45deg)`;
+      boxCheck("none");
     } else {
       buttonIcon.style.transform = "none";
+      boxCheck("auto");
     }
   };
 
-  const onDelClick = () => {
+  const onSelDelClick = () => {
+    checkBoxRef.current.childNodes.forEach((child) => {
+      if (child.childNodes[1].checked) {
+        child.remove();
+      }
+    });
+  };
+
+  const onAllDelClick = () => {
     while (checkBoxRef.current.firstChild) {
       checkBoxRef.current.removeChild(checkBoxRef.current.firstChild);
     }
@@ -34,14 +52,17 @@ const Todolist = () => {
     if (!event.target.id) {
       return;
     }
-    const target = event.path[1];
-    const clickCheck = target.style.textDecoration;
-    if (clickCheck === "line-through") {
-      target.style.textDecoration = "none";
-      target.style.color = "inherit";
-    } else {
-      target.style.textDecoration = "line-through";
-      target.style.color = "darkgray";
+    const ok = inputRef.current.classList.contains(`${styles.visible}`);
+    if (!ok) {
+      const target = event.path[1];
+      const clickCheck = target.style.textDecoration;
+      if (clickCheck === "line-through") {
+        target.style.textDecoration = "none";
+        target.style.color = "inherit";
+      } else {
+        target.style.textDecoration = "line-through";
+        target.style.color = "darkgray";
+      }
     }
   };
 
@@ -54,7 +75,7 @@ const Todolist = () => {
     const listBox = document.createElement("div");
     listBox.setAttribute(
       "style",
-      `display: flex; align-items: center; width: 200px; `
+      `display:flex; align-items:center; width: 200px;`
     );
     listBox.innerHTML = `
       <input type="checkbox" id=${inputValue} />
@@ -65,22 +86,31 @@ const Todolist = () => {
   };
 
   return (
-    <div className={styles.todolist}>
-      <div className={styles.list}>
-        <div ref={checkBoxRef} className={styles.checkboxList}></div>
-      </div>
-      <div ref={inputRef} className={`${styles.inputForm}`}>
-        <form onSubmit={onSubmit}>
-          <input type="text" placeholder="What is your main focus for today?" />
-        </form>
-        <button className={styles.delButton} onClick={onDelClick}>
-          <i className="fas fa-recycle"></i>
+    <>
+      <div className={styles.title}>✔Today</div>
+      <div className={styles.todolist}>
+        <div className={styles.list}>
+          <div ref={checkBoxRef} className={styles.checkboxList}></div>
+        </div>
+        <div ref={inputRef} className={`${styles.inputForm}`}>
+          <form onSubmit={onSubmit}>
+            <input
+              type="text"
+              placeholder="What is your main focus for today?"
+            />
+          </form>
+          <button className={styles.selectDelButton} onClick={onSelDelClick}>
+            <i className="fas fa-trash"></i>
+          </button>
+          <button className={styles.allDelButton} onClick={onAllDelClick}>
+            <i className="fas fa-recycle"></i>
+          </button>
+        </div>
+        <button className={styles.addButton} onClick={onAddClick}>
+          <i className="fas fa-plus"></i>
         </button>
       </div>
-      <button className={styles.addButton} onClick={onAddClick}>
-        <i className="fas fa-plus"></i>
-      </button>
-    </div>
+    </>
   );
 };
 
