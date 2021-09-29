@@ -1,11 +1,33 @@
+@value homeWhite from "../../common/colors.css";
+
 .bookmark {
   top: 93px;
   left: 50px;
-  width: 300px;
   height: 50px;
   display: flex;
   position: absolute;
-  padding: 10px 0;
+  padding: 10px;
+}
+
+.addButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border: 0;
+  color: homeWhite;
+  cursor: pointer;
+  display: none;
+}
+
+.bookmark:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.bookmark:hover .addButton {
+  display: block;
 }
 
 .item {
@@ -18,8 +40,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   margin-right: 10px;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 1);

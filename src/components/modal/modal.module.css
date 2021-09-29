@@ -1,0 +1,77 @@
+@value homeWhite, homeBlack from "../../common/colors.css";
+
+.modal {
+  background-color: homeWhite;
+  width: 260px;
+  height: 140px;
+  position: absolute;
+  top: 180px;
+  left: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.close {
+  text-align: end;
+  font-size: 10px;
+}
+
+.close button {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.body {
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.body span {
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+.body input {
+  border: 1px solid homeBlack;
+  margin-bottom: 5px;
+  size: 10px;
+}
+
+.body input::placeholder {
+  font-size: 10px;
+}
+
+.body input:focus {
+  outline: 0;
+  border-color: tomato;
+}
+
+.button {
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button button {
+  margin-left: 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.button button:first-child {
+  border: 1px solid homeBlack;
+  background-color: homeWhite;
+  color: homeBlack;
+}
+
+.button button:last-child {
+  border: 0;
+  background-color: tomato;
+  color: homeWhite;
+}
