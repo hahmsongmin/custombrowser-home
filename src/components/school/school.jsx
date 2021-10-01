@@ -6,7 +6,7 @@ import Lunch from "./lunch";
 import Loader from "../loader/loader";
 
 const School = ({ lunch, day, yoil, schedule, isLoading }) => {
-  console.log(schedule);
+  console.log(schedule, "✔");
   return (
     <>
       {isLoading ? (

@@ -31,14 +31,14 @@ class School {
     return [response.data, this.TODAY, this.yoil];
   };
 
-  getSchedule = async () => {
+  getSchedule = async (page) => {
     const response = await this.school.get("SchoolSchedule", {
       params: {
         ATPT_OFCDC_SC_CODE: "J10",
         SD_SCHUL_CODE: "7581026",
-        AA_FROM_YMD: "20210901",
-        AA_TO_YMD: "20220930",
-        pIndex: 1,
+        AA_FROM_YMD: `${this.year}0101`,
+        AA_TO_YMD: `${String(Number(this.year) + 1)}0301`,
+        pIndex: page,
         pSize: 100,
       },
     });

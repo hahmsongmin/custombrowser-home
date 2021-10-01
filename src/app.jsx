@@ -53,17 +53,22 @@ function App({ weatherApi, school }) {
   };
 
   const startSchedule = async () => {
+    const page = [1, 2, 3];
+    let temp = [];
     try {
-      const data = await school.getSchedule();
-      const schedule = data.SchoolSchedule[1].row;
-      const superArray = schedule.map((item) => {
-        return {
-          title: item.EVENT_NM,
-          date: item.AA_YMD,
-          timeText: item.EVENT_NM !== item.EVENT_CNTNT && item.EVENT_CNTNT,
-        };
-      });
-      setSchedule(superArray);
+      for (let i = 0; i < page.length; i++) {
+        const data = await school.getSchedule(page[i]);
+        const schedule = data.SchoolSchedule[1].row;
+        const superArray = schedule.map((item) => {
+          return {
+            title: item.EVENT_NM,
+            date: item.AA_YMD,
+            timeText: item.EVENT_NM !== item.EVENT_CNTNT && item.EVENT_CNTNT,
+          };
+        });
+        temp.push(...superArray);
+        setSchedule(temp);
+      }
     } catch {
     } finally {
       setIsLoading(false);
