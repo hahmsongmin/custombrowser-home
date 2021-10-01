@@ -1,37 +1,28 @@
 import React from "react";
 import styles from "./school.module.css";
+import { Calendar } from "@fullcalendar/core";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import listPlugin from "@fullcalendar/list";
+import Lunch from "./lunch";
+import Schedule from "./schedule";
 
-const YOIL = ["일", "월", "화", "수", "목", "금", "토"];
+let calendar = new Calendar("", {
+  plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
+  initialView: "dayGridMonth",
+  headerToolbar: {
+    left: "prev,next today",
+    center: "title",
+    right: "dayGridMonth,timeGridWeek,listWeek",
+  },
+});
 
 const School = ({ lunch, day, yoil }) => {
-  const lunchMenu = lunch && lunch.DDISH_NM.split("<br/>");
-  const hangle = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
-  const todayMenu =
-    lunchMenu &&
-    lunchMenu.map((menu) =>
-      menu
-        .replace(hangle, "")
-        .replace("여중", "")
-        .replace("남중", "")
-        .replace("건강식단", "")
-    );
   return (
     <div className={styles.school}>
-      {todayMenu ? (
-        <>
-          <span>
-            {day} {`(${YOIL[yoil]})`}
-          </span>
-          <span className={styles.name}>{lunch.SCHUL_NM}</span>
-          <ul className={styles.menuList}>
-            {todayMenu.map((menu, index) => {
-              return <li key={index}>{menu}</li>;
-            })}
-          </ul>
-        </>
-      ) : (
-        <p>❗급식정보가없습니다</p>
-      )}
+      <Schedule />
+      calendar.render();
+      <Lunch lunch={lunch} day={day} yoil={yoil} />
     </div>
   );
 };

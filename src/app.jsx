@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import styles from "./app.module.css";
 import Header from "./components/header/header";
 import Loader from "./components/loader/loader";
-import School from "./components/school/school";
 import Bookmark from "./components/bookmark/bookmark";
 import Todolist from "./components/todolist/todolist";
+import School from "./components/school/school";
 
 function App({ weatherApi, schoolLunch }) {
   const [isLoading, setIsLoading] = useState(true);

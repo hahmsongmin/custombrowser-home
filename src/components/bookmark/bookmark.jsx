@@ -4,7 +4,6 @@ import Modal from "../modal/modal";
 
 const Bookmark = () => {
   const [clickModal, setClickModal] = useState(false);
-  const [isAdd, setIsAdd] = useState(false);
   const [bookmark, setBookmark] = useState([
     {
       name: "Google",
@@ -50,6 +49,18 @@ const Bookmark = () => {
     "#be2edd",
   ];
 
+  const addCheck = (address) => {
+    if (address.includes("https://")) {
+      return address;
+    } else if (!address.includes("https://")) {
+      const temp = `https://${address}`;
+      return temp;
+    } else if (!address.includes("www.")) {
+      const temp = `https://www.${address}`;
+      return temp;
+    }
+  };
+
   const onParentSave = (name, address) => {
     if (!address || !name) {
       return;
@@ -62,15 +73,13 @@ const Bookmark = () => {
     } else if (English.test(name)) {
       siteName = `${name.substr(0, 7)}..`;
     }
-    setIsAdd(true);
+    const checkedLink = addCheck(address);
     const index = Math.round(Math.random() * 10);
     setBookmark([
       ...bookmark,
       {
         name: siteName,
-        addLink: !address.includes("www.")
-          ? `https://www.${address}`
-          : `https://${address}`,
+        addLink: checkedLink,
         color: { color: `${colors[index]}` },
       },
     ]);
