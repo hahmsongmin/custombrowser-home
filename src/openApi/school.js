@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class SchoolLunch {
+class School {
   constructor(key) {
     this.date = new Date();
     this.year = String(this.date.getFullYear());
@@ -14,8 +14,6 @@ class SchoolLunch {
       params: {
         KEY: this.API_KEY,
         Type: "json",
-        pIndex: 1,
-        pSize: 1,
       },
     });
   }
@@ -26,10 +24,26 @@ class SchoolLunch {
         ATPT_OFCDC_SC_CODE: "J10",
         SD_SCHUL_CODE: "7581016",
         MLSV_YMD: `${this.year}${this.month}${this.day}`,
+        pIndex: 1,
+        pSize: 1,
       },
     });
     return [response.data, this.TODAY, this.yoil];
   };
+
+  getSchedule = async () => {
+    const response = await this.school.get("SchoolSchedule", {
+      params: {
+        ATPT_OFCDC_SC_CODE: "J10",
+        SD_SCHUL_CODE: "7581026",
+        AA_FROM_YMD: "20210901",
+        AA_TO_YMD: "20220930",
+        pIndex: 1,
+        pSize: 100,
+      },
+    });
+    return response.data;
+  };
 }
 
-export default SchoolLunch;
+export default School;

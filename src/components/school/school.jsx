@@ -1,30 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./school.module.css";
-import { Calendar } from "@fullcalendar/core";
+import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import listPlugin from "@fullcalendar/list";
 import Lunch from "./lunch";
-import Schedule from "./schedule";
+import Loader from "../loader/loader";
 
-let calendar = new Calendar("", {
-  plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
-  initialView: "dayGridMonth",
-  headerToolbar: {
-    left: "prev,next today",
-    center: "title",
-    right: "dayGridMonth,timeGridWeek,listWeek",
-  },
-});
-
-const School = ({ lunch, day, yoil }) => {
+const School = ({ lunch, day, yoil, schedule, isLoading }) => {
+  console.log(schedule);
   return (
-    <div className={styles.school}>
-      <Schedule />
-      calendar.render();
-      <Lunch lunch={lunch} day={day} yoil={yoil} />
-    </div>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className={styles.school}>
+          <div className={styles.calendar}>
+            <FullCalendar
+              plugins={[dayGridPlugin]}
+              initialView="dayGridMonth"
+              eventContent={renderEventContent}
+              height="600px"
+              weekends={false}
+              events={schedule}
+              backgroundColor="red"
+            />
+          </div>
+          <Lunch lunch={lunch} day={day} yoil={yoil} />
+        </div>
+      )}
+    </>
   );
 };
+
+function renderEventContent(eventInfo) {
+  return (
+    <>
+      <b className={styles.title}>{eventInfo.event.title}</b>
+      {eventInfo.event.extendedProps.timeText && (
+        <p className={styles.description}>
+          {`${eventInfo.event.extendedProps.timeText}`}
+        </p>
+      )}
+    </>
+  );
+}
 
 export default School;

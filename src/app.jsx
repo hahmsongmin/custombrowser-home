@@ -6,7 +6,7 @@ import Bookmark from "./components/bookmark/bookmark";
 import Todolist from "./components/todolist/todolist";
 import School from "./components/school/school";
 
-function App({ weatherApi, schoolLunch }) {
+function App({ weatherApi, school }) {
   const [isLoading, setIsLoading] = useState(true);
   const [weather, setWeather] = useState();
   const [lunch, setLunch] = useState();
@@ -14,6 +14,8 @@ function App({ weatherApi, schoolLunch }) {
     day: null,
     yoil: null,
   });
+
+  const [schedule, setSchedule] = useState();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(startWeather, () => {
@@ -23,6 +25,10 @@ function App({ weatherApi, schoolLunch }) {
 
   useEffect(() => {
     startLunch();
+  }, []);
+
+  useEffect(() => {
+    startSchedule();
   }, []);
 
   const startWeather = async (position) => {
@@ -36,13 +42,28 @@ function App({ weatherApi, schoolLunch }) {
 
   const startLunch = async () => {
     try {
-      const data = await schoolLunch.getLunch();
+      const data = await school.getLunch();
       const menu = data[0].mealServiceDietInfo[1].row[0];
       setLunch(menu);
       setToday({
         day: data[1],
         yoil: data[2],
       });
+    } catch {}
+  };
+
+  const startSchedule = async () => {
+    try {
+      const data = await school.getSchedule();
+      const schedule = data.SchoolSchedule[1].row;
+      const superArray = schedule.map((item) => {
+        return {
+          title: item.EVENT_NM,
+          date: item.AA_YMD,
+          timeText: item.EVENT_NM !== item.EVENT_CNTNT && item.EVENT_CNTNT,
+        };
+      });
+      setSchedule(superArray);
     } catch {
     } finally {
       setIsLoading(false);
@@ -58,7 +79,13 @@ function App({ weatherApi, schoolLunch }) {
           <Header weather={weather} />
           <Bookmark />
           <Todolist />
-          <School lunch={lunch} day={today.day} yoil={today.yoil} />
+          <School
+            lunch={lunch}
+            day={today.day}
+            yoil={today.yoil}
+            schedule={schedule}
+            isLoading={isLoading}
+          />
         </div>
       )}
     </div>
