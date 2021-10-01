@@ -9,7 +9,11 @@ const School = ({ lunch, day, yoil }) => {
   const todayMenu =
     lunchMenu &&
     lunchMenu.map((menu) =>
-      menu.replace(hangle, "").replace("여중", "").replace("남중", "")
+      menu
+        .replace(hangle, "")
+        .replace("여중", "")
+        .replace("남중", "")
+        .replace("건강식단", "")
     );
   return (
     <div className={styles.school}>

@@ -25,7 +25,11 @@ const Modal = ({ setClickModal, onParentSave }) => {
         <span>이름</span>
         <input ref={nameRef} type="text" placeholder="웹 사이트 제목" />
         <span>URL</span>
-        <input ref={addRef} type="text" placeholder="웹 사이트 주소" />
+        <input
+          ref={addRef}
+          type="text"
+          placeholder="웹 사이트 주소  (예시 www.google.com)"
+        />
         <div className={styles.button}>
           <button onClick={onChildSave}>저장</button>
         </div>

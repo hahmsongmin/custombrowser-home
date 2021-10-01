@@ -2,10 +2,10 @@
 
 .modal {
   background-color: homeWhite;
-  width: 260px;
-  height: 140px;
+  width: 430px;
+  height: 235px;
   position: absolute;
-  top: 180px;
+  top: 220px;
   left: 300px;
   padding: 10px;
   border-radius: 10px;
@@ -14,13 +14,13 @@
 
 .close {
   text-align: end;
-  font-size: 10px;
 }
 
 .close button {
   border: 0;
   background-color: transparent;
   cursor: pointer;
+  font-size: 1.2em;
 }
 
 .body {
@@ -30,18 +30,19 @@
 }
 
 .body span {
-  font-size: 12px;
+  font-size: 25px;
   margin-bottom: 3px;
 }
 
 .body input {
-  border: 1px solid homeBlack;
+  border: 2px solid darkgray;
+  height: 30px;
   margin-bottom: 5px;
-  size: 10px;
+  size: 17px;
 }
 
 .body input::placeholder {
-  font-size: 10px;
+  font-size: 17px;
 }
 
 .body input:focus {
@@ -59,7 +60,7 @@
 .button button {
   margin-left: 10px;
   border-radius: 15px;
-  font-size: 12px;
+  font-size: 25px;
   padding: 0 10px;
   cursor: pointer;
 }

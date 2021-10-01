@@ -5,7 +5,7 @@ class SchoolLunch {
     this.date = new Date();
     this.year = String(this.date.getFullYear());
     this.month = String(this.date.getMonth() + 1).padStart(2, "0");
-    this.day = String(this.date.getDate());
+    this.day = String(this.date.getDate()).padStart(2, "0");
     this.yoil = this.date.getDay();
     this.TODAY = `${this.month}월${this.day}일`;
     this.API_KEY = key;

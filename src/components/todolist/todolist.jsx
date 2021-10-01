@@ -6,12 +6,11 @@ let buttonIcon;
 const Todolist = () => {
   const checkBoxRef = useRef();
   const inputRef = useRef();
+  const addButtonRef = useRef();
 
   useEffect(() => {
     checkBoxRef.current.addEventListener("click", itemClick);
     buttonIcon = document.querySelector(".fa-plus");
-
-    return () => checkBoxRef.current.removeEventListener("click", itemClick);
   }, []);
 
   const boxCheck = (value) => {
@@ -26,10 +25,11 @@ const Todolist = () => {
     inputRef.current.classList.toggle(`${styles.visible}`);
     const ok = inputRef.current.classList.contains(`${styles.visible}`);
     if (ok) {
-      buttonIcon.style.transform = `rotate(45deg)`;
+      addButtonRef.current.classList.add(`${styles.rotate}`);
       boxCheck("none");
     } else {
-      buttonIcon.style.transform = "none";
+      addButtonRef.current.classList.remove(`${styles.rotate}`);
+      buttonIcon.style.transform = "";
       boxCheck("auto");
     }
   };
@@ -75,11 +75,11 @@ const Todolist = () => {
     const listBox = document.createElement("div");
     listBox.setAttribute(
       "style",
-      `display:flex; align-items:center; width: 200px;`
+      `display:flex; align-items:center; width: 450px;`
     );
     listBox.innerHTML = `
-      <input type="checkbox" id=${inputValue} />
-      <h6>${inputValue}</h6>
+      <input type="checkbox" id=${inputValue} style="transform:scale(1.5);" />
+      <h4>${inputValue}</h4>
     `;
     checkBoxRef.current.appendChild(listBox);
     inputRef.current.childNodes[0][0].value = "";
@@ -106,7 +106,11 @@ const Todolist = () => {
             <i className="fas fa-recycle"></i>
           </button>
         </div>
-        <button className={styles.addButton} onClick={onAddClick}>
+        <button
+          ref={addButtonRef}
+          className={styles.addButton}
+          onClick={onAddClick}
+        >
           <i className="fas fa-plus"></i>
         </button>
       </div>
