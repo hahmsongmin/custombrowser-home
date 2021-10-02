@@ -1,13 +1,9 @@
 import React, { useRef } from "react";
 import styles from "./modal.module.css";
 
-const Modal = ({ setClickModal, onParentSave }) => {
+const Modal = ({ onParentSave, onClose }) => {
   const nameRef = useRef();
   const addRef = useRef();
-
-  const onClose = () => {
-    setClickModal(false);
-  };
 
   const onChildSave = () => {
     const name = nameRef.current.value;

@@ -22,6 +22,10 @@ const Bookmark = () => {
     },
   ]);
 
+  const onClose = () => {
+    setClickModal(false);
+  };
+
   const clickAdd = () => {
     setClickModal(true);
   };
@@ -63,6 +67,13 @@ const Bookmark = () => {
 
   const onParentSave = (name, address) => {
     if (!address || !name) {
+      return;
+    }
+    if (bookmark.length === 10) {
+      onClose();
+      setTimeout(() => {
+        alert("더 이상 추가할 수 없습니다(최대10개)");
+      }, 200);
       return;
     }
     let siteName;
@@ -111,9 +122,7 @@ const Bookmark = () => {
           <i className="fas fa-plus"></i>
         </button>
       </div>
-      {clickModal && (
-        <Modal setClickModal={setClickModal} onParentSave={onParentSave} />
-      )}
+      {clickModal && <Modal onParentSave={onParentSave} onClose={onClose} />}
     </>
   );
 };

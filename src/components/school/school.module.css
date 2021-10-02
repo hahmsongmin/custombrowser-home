@@ -9,7 +9,7 @@
 .calendar {
   position: absolute;
   top: 130px;
-  width: 100%;
+  width: 85%;
   height: 100%;
   padding: 20px;
   background-color: rgba(255, 255, 255, 1);
