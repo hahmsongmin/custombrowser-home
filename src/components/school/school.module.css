@@ -21,3 +21,24 @@
   white-space: normal;
   color: #f19066;
 }
+
+@media screen and (min-width: 1200px) and (max-width: 1500px) {
+  .calendar {
+    transform: translateX(300px);
+    width: 550px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .calendar {
+    transform: translateX(10px);
+    width: 550px;
+  }
+}
+
+@media screen and (min-width: 2400px) {
+  .calendar {
+    width: 1500px;
+    height: 900px;
+  }
+}

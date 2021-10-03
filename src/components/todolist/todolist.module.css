@@ -1,4 +1,4 @@
-@value homeWhite from "../../common/colors.css";
+@value homeWhite, homeBlack from "../../common/colors.css";
 
 .title {
   position: absolute;
@@ -8,7 +8,7 @@
   font-size: 30px;
   font-weight: bold;
   text-align: center;
-  color: homeWhite;
+  color: homeBlack;
   z-index: 1;
 }
 
@@ -116,4 +116,44 @@ h4 {
   outline: 0;
   border: 0;
   cursor: pointer;
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1500px) {
+  .title {
+    left: 120px;
+  }
+  .todolist {
+    width: 250px;
+    height: 400px;
+  }
+
+  .inputForm {
+    transform: translateY(300px);
+  }
+
+  .inputForm input {
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+  }
+
+  .inputForm input::placeholder {
+    font-size: 12px;
+  }
+
+  .checkboxList {
+    padding-top: 5px;
+    width: 250px;
+    height: 270px;
+  }
+
+  .addButton {
+    right: 105px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    display: none;
+  }
 }

@@ -23,8 +23,8 @@ class School {
       params: {
         ATPT_OFCDC_SC_CODE: locationCode,
         SD_SCHUL_CODE: schoolCode,
-        // MLSV_YMD: `${this.year}${this.month}${this.day}`,
-        MLSV_YMD: "20211005",
+        MLSV_YMD: `${this.year}${this.month}${this.day}`,
+        // MLSV_YMD: "20211005",
         pIndex: 1,
         pSize: 1,
       },

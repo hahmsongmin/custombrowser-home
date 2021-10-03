@@ -1,7 +1,7 @@
 .app {
   height: 100vh;
   overflow: hidden;
-  background: url("./images/zoom.jpg") center/cover no-repeat;
+  background: url("./images/bg3.jpg") center/cover no-repeat;
 }
 
 .main {

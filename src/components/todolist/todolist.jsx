@@ -86,7 +86,7 @@ const Todolist = () => {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.title}>✔Today</div>
       <div className={styles.todolist}>
         <div className={styles.list}>
@@ -114,7 +114,7 @@ const Todolist = () => {
           <i className="fas fa-plus"></i>
         </button>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,6 +1,9 @@
+@value homeBlack from "../../common/colors.css";
+
 .time {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   font-size: 5em;
+  color: homeBlack;
 }
