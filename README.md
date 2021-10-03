@@ -10,9 +10,9 @@
 
 ##### ⭐진행상황
 
-- 10.01일자 업데이트 (학사일정반영)
+- 10.03일자 업데이트 (데이터방향 통합(재정리), 교육청선택, 학교검색, 코로나현황판)
 
-![학사일정데모](https://user-images.githubusercontent.com/78192018/135630894-a3d9fd5c-b9ca-4279-a5db-4b862d8e5890.png)
+![업데이트](https://user-images.githubusercontent.com/78192018/135748913-5077a165-0a13-4b32-8368-47ccd115c2a6.png)
 
 ---
 

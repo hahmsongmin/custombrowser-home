@@ -2,30 +2,14 @@ import React from "react";
 import styles from "./corona.module.css";
 
 const Corona = ({ coronaTotal, coronaCountry }) => {
-  console.log(coronaTotal, coronaCountry);
-  const { TotalCase, TotalDeath, TodayDeath, TotalRecovered, TodayRecovered } =
-    coronaTotal;
   const {
-    korea,
-    seoul,
-    busan,
-    daegu,
-    incheon,
-    gwangju,
-    daejeon,
-    ulsan,
-    sejong,
-    gyeonggi,
-    gangwon,
-    chungbuk,
-    chungnam,
-    jeonbuk,
-    jeonnam,
-    gyeongbuk,
-    gyeongnam,
-    jeju,
-    quarantine,
-  } = coronaCountry;
+    TotalCase, //
+    TotalDeath,
+    TodayDeath,
+    TotalRecovered,
+    TodayRecovered,
+  } = coronaTotal;
+  const { korea } = coronaCountry;
 
   return (
     <section className={styles.corona}>
@@ -47,7 +31,9 @@ const Corona = ({ coronaTotal, coronaCountry }) => {
         <span>완치자</span>
         <span className={styles.RecoveredSpan}>{TotalRecovered}</span>
         <div className={styles.recoveredCount}>
-          <span>{TodayRecovered}↑</span>
+          <span>
+            {TodayRecovered.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}↑
+          </span>
         </div>
       </div>
     </section>

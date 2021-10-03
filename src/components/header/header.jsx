@@ -19,6 +19,7 @@ const Header = ({
   return (
     <section className={styles.header}>
       <Weather weather={weather} />
+      <Time />
       <div className={styles.right}>
         <div className={styles.select}>
           <SchoolSelect
@@ -26,7 +27,6 @@ const Header = ({
             selectedSchool={selectedSchool}
           />
         </div>
-        <Time />
       </div>
       <Corona coronaTotal={coronaTotal} coronaCountry={coronaCountry} />
       <Lunch lunch={lunch} day={day} yoil={yoil} />
