@@ -29,7 +29,7 @@ function App({ weatherApi, school }) {
 
   useEffect(() => {
     startLunch();
-  }, []);
+  }, [userSchool]);
 
   useEffect(() => {
     startSchedule();
@@ -46,7 +46,10 @@ function App({ weatherApi, school }) {
 
   const startLunch = async () => {
     try {
-      const data = await school.getLunch();
+      const data = await school.getLunch(
+        userSchool.locationCode,
+        userSchool.schoolCode
+      );
       const menu = data[0].mealServiceDietInfo[1].row[0];
       setLunch(menu);
       setToday({

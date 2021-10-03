@@ -18,12 +18,13 @@ class School {
     });
   }
 
-  getLunch = async () => {
+  getLunch = async (locationCode, schoolCode) => {
     const response = await this.school.get("mealServiceDietInfo", {
       params: {
-        ATPT_OFCDC_SC_CODE: "J10",
-        SD_SCHUL_CODE: "7581016",
-        MLSV_YMD: `${this.year}${this.month}${this.day}`,
+        ATPT_OFCDC_SC_CODE: locationCode,
+        SD_SCHUL_CODE: schoolCode,
+        // MLSV_YMD: `${this.year}${this.month}${this.day}`,
+        MLSV_YMD: "20211005",
         pIndex: 1,
         pSize: 1,
       },
