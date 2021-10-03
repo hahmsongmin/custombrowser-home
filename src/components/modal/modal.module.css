@@ -9,6 +9,7 @@
   left: 300px;
   padding: 10px;
   border-radius: 10px;
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
   z-index: 2;
 }
 

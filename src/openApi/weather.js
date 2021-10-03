@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class WeatherApi {
+class Weather {
   constructor(key) {
     this.API_KEY = key;
     this.weather = axios.create({
@@ -23,4 +23,4 @@ class WeatherApi {
   };
 }
 
-export default WeatherApi;
+export default Weather;

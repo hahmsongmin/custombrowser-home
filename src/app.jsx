@@ -6,7 +6,7 @@ import Bookmark from "./components/bookmark/bookmark";
 import Todolist from "./components/todolist/todolist";
 import School from "./components/school/school";
 
-function App({ weatherApi, school }) {
+function App({ weatherApi, school, corona }) {
   const [isLoading, setIsLoading] = useState(true);
   const [weather, setWeather] = useState();
   const [lunch, setLunch] = useState();
@@ -20,6 +20,8 @@ function App({ weatherApi, school }) {
     locationCode: null,
   });
   const [schedule, setSchedule] = useState();
+  const [coronaTotal, setCoronaTotal] = useState();
+  const [coronaCountry, setCoronaCountry] = useState();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(startWeather, () => {
@@ -34,6 +36,10 @@ function App({ weatherApi, school }) {
   useEffect(() => {
     startSchedule();
   }, [userSchool]);
+
+  useEffect(() => {
+    startCorona();
+  }, []);
 
   const startWeather = async (position) => {
     const lat = position.coords.latitude;
@@ -105,6 +111,17 @@ function App({ weatherApi, school }) {
     } catch {
     } finally {
       setSchedule(temp);
+    }
+  };
+
+  const startCorona = async () => {
+    try {
+      const data1 = await corona.getTotal();
+      const data2 = await corona.getCountry();
+      setCoronaTotal(data1);
+      setCoronaCountry(data2);
+    } catch {
+    } finally {
       setIsLoading(false);
     }
   };
@@ -117,18 +134,17 @@ function App({ weatherApi, school }) {
         <div className={styles.main}>
           <Header
             weather={weather}
-            selectLocation={selectLocation}
-            selectedSchool={selectedSchool}
-          />
-          <Bookmark />
-          <Todolist />
-          <School
             lunch={lunch}
             day={today.day}
             yoil={today.yoil}
-            schedule={schedule}
-            isLoading={isLoading}
+            selectLocation={selectLocation}
+            selectedSchool={selectedSchool}
+            coronaTotal={coronaTotal}
+            coronaCountry={coronaCountry}
           />
+          <Bookmark />
+          <Todolist />
+          <School schedule={schedule} isLoading={isLoading} />
         </div>
       )}
     </div>

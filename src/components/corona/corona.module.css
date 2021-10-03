@@ -1,0 +1,61 @@
+@value homeBlack from "../../common/colors.css";
+
+.corona {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 1);
+  color: homeBlack;
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+}
+
+.case,
+.death,
+.TotalRecovered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+.caseSpan {
+  color: #ff3f34;
+}
+
+.deathSpan {
+  color: #808e9b;
+}
+
+.RecoveredSpan {
+  color: #05c46b;
+}
+
+.death {
+  margin: 0 20px;
+}
+
+.caseCount,
+.deathCount,
+.recoveredCount {
+  padding: 0 10px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-top: 3px;
+}
+
+.caseCount {
+  background-color: rgba(255, 63, 52, 0.2);
+  color: #ff3f34;
+}
+
+.deathCount {
+  background-color: rgba(128, 142, 155, 0.2);
+  color: #808e9b;
+}
+
+.recoveredCount {
+  background-color: rgba(5, 196, 107, 0.2);
+  color: #05c46b;
+}

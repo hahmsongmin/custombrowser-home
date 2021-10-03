@@ -1,3 +1,5 @@
+@value homeBlack from "../../common/colors.css";
+
 .lunch {
   width: 200px;
   background-color: antiquewhite;
@@ -6,9 +8,12 @@
   align-items: center;
   border-radius: 15px;
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
-  position: absolute;
-  right: -260px;
   padding: 10px 0;
+  position: absolute;
+  color: homeBlack;
+  font-weight: bold;
+  right: 20px;
+  top: 220px;
 }
 
 .name {

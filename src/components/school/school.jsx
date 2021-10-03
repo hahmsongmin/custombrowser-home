@@ -4,37 +4,33 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import Lunch from "./lunch";
 import Loader from "../loader/loader";
 
-const School = ({ lunch, day, yoil, schedule, isLoading }) => {
+const School = ({ schedule, isLoading }) => {
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
-        <div className={styles.school}>
-          <div className={styles.calendar}>
-            <FullCalendar
-              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-              headerToolbar={{
-                left: "prev,next today",
-                center: "title",
-                right: "dayGridMonth,timeGridWeek,timeGridDay",
-              }}
-              initialView="dayGridMonth"
-              height="600px"
-              editable={true}
-              selectable={true}
-              selectMirror={true}
-              dayMaxEvents={false}
-              initialView="dayGridMonth"
-              eventContent={renderEventContent}
-              select={handleDateSelect}
-              events={schedule}
-            />
-          </div>
-          <Lunch lunch={lunch} day={day} yoil={yoil} />
+        <div className={styles.calendar}>
+          <FullCalendar
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay",
+            }}
+            initialView="dayGridMonth"
+            height="600px"
+            editable={true}
+            selectable={true}
+            selectMirror={true}
+            dayMaxEvents={false}
+            initialView="dayGridMonth"
+            eventContent={renderEventContent}
+            select={handleDateSelect}
+            events={schedule}
+          />
         </div>
       )}
     </>

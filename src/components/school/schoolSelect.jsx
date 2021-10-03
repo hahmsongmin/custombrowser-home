@@ -27,7 +27,11 @@ const SchoolSelect = ({ selectLocation, selectedSchool }) => {
         <option value="S10">경상남도</option>
         <option value="T10">제주특별시</option>
       </select>
-      <input type="text" placeholder="학교를입력해주세요" />
+      <input
+        className={styles.schoolInput}
+        type="text"
+        placeholder="학교를입력해주세요"
+      />
     </form>
   );
 };

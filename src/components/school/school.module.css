@@ -1,18 +1,11 @@
-.school {
-  position: absolute;
-  transform: translateX(480px);
-  border-top-right-radius: 15px;
-  width: 1100px;
-  height: 600px;
-}
-
 .calendar {
   position: absolute;
-  top: 130px;
-  width: 85%;
-  height: 100%;
+  transform: translateX(480px);
+  top: 250px;
+  width: 1000px;
+  height: 600px;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 15px;
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
 }
