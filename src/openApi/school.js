@@ -31,11 +31,23 @@ class School {
     return [response.data, this.TODAY, this.yoil];
   };
 
-  getSchedule = async (page) => {
+  getSchoolInfo = async (code, name) => {
+    const response = await this.school.get("schoolInfo", {
+      params: {
+        ATPT_OFCDC_SC_CODE: code,
+        SCHUL_NM: name,
+        pIndex: 1,
+        pSize: 1,
+      },
+    });
+    return response.data;
+  };
+
+  getSchedule = async (page, locationCode, schoolCode) => {
     const response = await this.school.get("SchoolSchedule", {
       params: {
-        ATPT_OFCDC_SC_CODE: "J10",
-        SD_SCHUL_CODE: "7581026",
+        ATPT_OFCDC_SC_CODE: locationCode,
+        SD_SCHUL_CODE: schoolCode,
         AA_FROM_YMD: `${this.year}0101`,
         AA_TO_YMD: `${String(Number(this.year) + 1)}0301`,
         pIndex: page,

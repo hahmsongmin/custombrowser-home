@@ -7,4 +7,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.select {
+  position: absolute;
+  bottom: -35px;
+  right: 300px;
 }

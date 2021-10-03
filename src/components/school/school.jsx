@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./school.module.css";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -8,17 +8,6 @@ import Lunch from "./lunch";
 import Loader from "../loader/loader";
 
 const School = ({ lunch, day, yoil, schedule, isLoading }) => {
-  const calendarRef = useRef();
-  const [saveSchedule, setSaveSchedule] = useState();
-  useEffect(() => {
-    setSaveSchedule(schedule);
-  }, [saveSchedule]);
-
-  const handleDateClick = () => {
-    const calendarApi = calendarRef.current.getApi();
-    // alert("Hello🙋‍♂️");
-  };
-
   return (
     <>
       {isLoading ? (
@@ -34,13 +23,15 @@ const School = ({ lunch, day, yoil, schedule, isLoading }) => {
                 right: "dayGridMonth,timeGridWeek,timeGridDay",
               }}
               initialView="dayGridMonth"
+              height="600px"
               editable={true}
               selectable={true}
               selectMirror={true}
-              dayMaxEvents={true}
+              dayMaxEvents={false}
               initialView="dayGridMonth"
               eventContent={renderEventContent}
-              events={saveSchedule}
+              select={handleDateSelect}
+              events={schedule}
             />
           </div>
           <Lunch lunch={lunch} day={day} yoil={yoil} />
@@ -49,6 +40,20 @@ const School = ({ lunch, day, yoil, schedule, isLoading }) => {
     </>
   );
 };
+
+function handleDateSelect(eventInfo) {
+  const title = prompt("일정을 입력해주세요");
+  const calendarApi = eventInfo.view.calendar;
+  if (title) {
+    calendarApi.addEvent({
+      title,
+      start: eventInfo.startStr,
+      end: eventInfo.endStr,
+      allDay: eventInfo.allDay,
+      color: "red",
+    });
+  }
+}
 
 function renderEventContent(eventInfo) {
   return (

@@ -14,7 +14,11 @@ function App({ weatherApi, school }) {
     day: null,
     yoil: null,
   });
-
+  const [location, setLocation] = useState();
+  const [userSchool, setUserSchool] = useState({
+    schoolCode: null,
+    locationCode: null,
+  });
   const [schedule, setSchedule] = useState();
 
   useEffect(() => {
@@ -29,7 +33,7 @@ function App({ weatherApi, school }) {
 
   useEffect(() => {
     startSchedule();
-  }, []);
+  }, [userSchool]);
 
   const startWeather = async (position) => {
     const lat = position.coords.latitude;
@@ -52,12 +56,39 @@ function App({ weatherApi, school }) {
     } catch {}
   };
 
+  const selectLocation = (event) => {
+    const location = event.target.value;
+    setLocation(location);
+  };
+
+  const selectedSchool = async (event) => {
+    event.preventDefault();
+    const schoolName = event.target.childNodes[1].value;
+    if (location && schoolName) {
+      try {
+        const data = await school.getSchoolInfo(location, schoolName);
+        const schoolCode = data.schoolInfo[1].row[0].SD_SCHUL_CODE;
+        setUserSchool({
+          schoolCode,
+          locationCode: location,
+        });
+      } catch {}
+    }
+  };
+
   const startSchedule = async () => {
     const page = [1, 2, 3];
     let temp = [];
     try {
+      if (!userSchool.schoolCode) {
+        return;
+      }
       for (let i = 0; i < page.length; i++) {
-        const data = await school.getSchedule(page[i]);
+        const data = await school.getSchedule(
+          page[i],
+          userSchool.locationCode,
+          userSchool.schoolCode
+        );
         const schedule = data.SchoolSchedule[1].row;
         const superArray = schedule.map((item) => {
           return {
@@ -67,10 +98,10 @@ function App({ weatherApi, school }) {
           };
         });
         temp.push(...superArray);
-        setSchedule(temp);
       }
     } catch {
     } finally {
+      setSchedule(temp);
       setIsLoading(false);
     }
   };
@@ -81,7 +112,11 @@ function App({ weatherApi, school }) {
         <Loader />
       ) : (
         <div className={styles.main}>
-          <Header weather={weather} />
+          <Header
+            weather={weather}
+            selectLocation={selectLocation}
+            selectedSchool={selectedSchool}
+          />
           <Bookmark />
           <Todolist />
           <School
