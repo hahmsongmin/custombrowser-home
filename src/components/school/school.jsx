@@ -21,7 +21,7 @@ const School = ({ schedule, isLoading }) => {
               right: "dayGridMonth,timeGridWeek,timeGridDay",
             }}
             initialView="dayGridMonth"
-            height="600px"
+            height="500px"
             editable={true}
             selectable={true}
             selectMirror={true}

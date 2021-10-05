@@ -7,3 +7,9 @@
   font-size: 5em;
   color: homeBlack;
 }
+
+@media screen and (max-height: 800px) {
+  .time {
+    font-size: 3em;
+  }
+}

@@ -33,3 +33,9 @@
 .schoolInput:focus {
   outline: none;
 }
+
+@media screen and (max-height: 800px) {
+  .select {
+    bottom: -25px;
+  }
+}

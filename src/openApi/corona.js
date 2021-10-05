@@ -19,3 +19,6 @@ class Corona {
 }
 
 export default Corona;
+
+// 배포시
+// proxy : https://api.corona-19.kr, package.json에서 삭제

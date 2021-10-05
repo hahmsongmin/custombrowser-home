@@ -31,3 +31,10 @@
     top: 10px;
   }
 }
+
+@media screen and (max-height: 800px) {
+  .lunch {
+    right: 20px;
+    top: 300px;
+  }
+}
