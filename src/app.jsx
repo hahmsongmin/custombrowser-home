@@ -32,7 +32,7 @@ function App({ weatherApi, school, corona }) {
         setWeather(data);
       } catch {}
     };
-    window.navigator.geolocation.getCurrentPosition(startWeather, () => {
+    navigator.geolocation.getCurrentPosition(startWeather, () => {
       alert('위치정보를 찾을 수 없습니다.');
     });
   }, [weatherApi]);
